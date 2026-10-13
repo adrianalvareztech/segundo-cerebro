@@ -1,42 +1,80 @@
-# Tu Segundo Cerebro con IA
+# Segundo cerebro con IA
 
-Los recursos del Módulo 4 de la Oficina de IA: el skill `/nuevo-cerebro` y todos los prompts
-que se usan en las clases.
+Un skill para Claude Code que crea segundos cerebros con el método LLM Wiki de Andrej Karpathy.
 
-Un segundo cerebro es una carpeta de texto que tu IA lee, ordena y mantiene al día, con el
-método LLM Wiki de Andrej Karpathy
-([el idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)).
+Un segundo cerebro es una carpeta de texto que tu IA lee, ordena y mantiene al día. Tú metes
+lo que lees, escuchas o te dicen tus clientes, y Claude lo convierte en un wiki enlazado al que
+le haces preguntas. La idea completa está en el
+[idea file de Karpathy](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-## Qué hay aquí
+## Cómo se ve un cerebro
 
-| Archivo | Qué es |
-|---|---|
-| `nuevo-cerebro/SKILL.md` | El skill que crea un cerebro nuevo a partir del que ya tienes: copia su estructura, ajusta la forma del wiki a para qué es el nuevo, y mete las primeras fuentes (YouTube, videos guardados, Google Drive, apps sin API, archivos o lo que le dictes) |
-| `prompts-del-modulo.md` | Los prompts de cada clase, listos para copiar |
+```
+mi-cerebro/
+  raw/        lo que tú metes, tal cual. Nunca se edita
+  wiki/       lo que escribe Claude: conceptos, resúmenes y enlaces
+  CLAUDE.md   las reglas: para qué es y cómo se pasa de raw/ a wiki/
+  index.md    la tabla de contenido
+  log.md      qué se procesó y cuándo
+```
 
-## Cómo se instala
+Lo único que cambia de un cerebro a otro es la forma del `wiki/`, y la decide para qué es.
+El de un tema que investigas se organiza por conceptos. El de tus clientes, por persona. El
+de tus videos, por video.
 
-Abre Claude Code y pega esto:
+## Empieza así
+
+**1. El primero, a mano.** Así entiendes cómo funciona. Abre Claude Code en una carpeta vacía
+y pega:
+
+> Lee este idea file de Karpathy: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+> Quiero un segundo cerebro sobre [tu tema, que quepa en una frase], para [para qué lo vas a usar]. Estas son las tres preguntas que le voy a hacer: [pregunta 1], [pregunta 2], [pregunta 3]. Arma la estructura y escribe el CLAUDE.md. No ingieras nada todavía.
+
+**2. Instala el skill**, para los que siguen. En Claude Code:
 
 > Instala el skill nuevo-cerebro de este repo en mis skills globales (~/.claude/skills/): https://github.com/adrianalvareztech/segundo-cerebro
 
 Cierra y vuelve a abrir Claude Code. Escribe `/nuevo-cerebro` y debe aparecer.
 
-**El primer cerebro hazlo a mano**, con el idea file de Karpathy (clase 2). El skill es para
-los que siguen: copia el que ya tienes como molde.
+**3. Úsalo.** Una línea y un link:
 
-## Lo que el skill instala cuando lo necesita
+> /nuevo-cerebro de Alex Hormozi, para pensar mi oferta y mis precios como él. Empieza con este video: [link de YouTube]
 
-Nada de esto se instala de entrada. El skill te avisa y lo instala la primera vez que una
-fuente lo pide.
+El skill te hace las preguntas que falten, te propone la forma del wiki, espera tu sí, lo crea
+copiando el cerebro que ya tienes más parecido y mete las primeras fuentes.
 
-| Herramienta | Para qué | De dónde sale |
+## Lo de todos los días
+
+| Para | Le dices |
+|---|---|
+| Meter algo nuevo | "Acabo de meter fuentes en raw, procésalas e intégralas al wiki." |
+| Preguntar | Lo que quieras. Te contesta citando de qué página y de qué fuente lo saca |
+| Guardar una buena respuesta | "Esta respuesta está buena. Guárdala en el wiki y enlázala desde las páginas que usó." |
+| Que no se pudra | "Revisa el cerebro: integra lo pendiente en raw, marca contradicciones, lista lo de más de 6 meses y las páginas sin enlaces. No borres nada, déjame el reporte." |
+
+Meter un archivo a `raw/` no lo mete al wiki. Son dos pasos: lo metes y le pides que lo integre.
+
+## De dónde saca las fuentes
+
+| Fuente | Cómo | Qué instala la primera vez |
 |---|---|---|
-| yt-dlp | bajar los subtítulos de un video de YouTube, sin el video | [github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) |
-| Whisper + ffmpeg | transcribir videos o audios que tienes en tu computadora | [github.com/openai/whisper](https://github.com/openai/whisper) |
-| Playwright MCP | leer una app que no tiene API ni conector, con tu sesión | [github.com/microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) |
+| Un video de YouTube | baja solo los subtítulos | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
+| Un video o audio en tu computadora | lo transcribe en tu compu, sin mandarlo a ningún lado | [Whisper](https://github.com/openai/whisper), con Python y ffmpeg (más de 1 GB la primera vez) |
+| Una carpeta de Google Drive | con el conector de Google Drive de Claude | nada |
+| Una app sin API ni conector | Claude maneja un navegador con tu sesión. Inicias sesión tú, nunca le das tu contraseña, y solo lee | [Playwright MCP](https://github.com/microsoft/playwright-mcp), con Node.js |
+| Archivos, notas o lo que le dictes | los guarda tal cual en `raw/` | nada |
 
-Las tres son gratis, de código abierto y corren en tu computadora.
+Nada se instala de entrada. El skill te avisa antes y lo instala cuando una fuente lo pide.
+Todo es gratis y de código abierto.
+
+## Lo que hay que saber
+
+- **Guarda texto.** Los videos y audios se transcriben. Las imágenes se quedan en su carpeta,
+  y el wiki dice qué hay en cada una y dónde está.
+- **No reemplaza tu CRM ni tu Excel.** Quién te pagó y en qué etapa va cada cliente se quedan
+  donde ya los llevas.
+- **No se mantiene solo** si no lo programas. La revisión de arriba, una vez por semana, es lo
+  que lo mantiene vivo.
 
 ## Licencia
 
