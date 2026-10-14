@@ -56,7 +56,10 @@ toma la persona.
 - `log.md` con la primera entrada: la fecha, que se creó y de qué cerebro salió el molde.
 
 ### 6. Meter las primeras fuentes
-Según lo que te hayan dado:
+Según lo que te hayan dado. Una regla para todo lo que se instala: en Windows, lo que
+instalas con `winget` no aparece en la terminal que ya estaba abierta. Si después de
+instalar el comando no se encuentra, búscalo por su ruta completa o pide reiniciar Claude
+Code; no lo reinstales.
 
 **Un link de YouTube**
 1. Si `yt-dlp` no está instalado, dile a la persona qué es (gratis y de código abierto,
@@ -99,8 +102,10 @@ Según lo que te hayan dado:
 **Una app sin API ni conector** (tu comunidad de Skool, un CRM viejo, un panel web)
 1. Se usa un navegador que maneja Claude: Playwright MCP, de Microsoft, gratis y de código
    abierto (`github.com/microsoft/playwright-mcp`). Si no está, instálalo con
-   `claude mcp add playwright npx @playwright/mcp@latest` (necesita Node.js: si no hay,
-   `winget install OpenJS.NodeJS.LTS` o `brew install node`) y pide reiniciar Claude Code.
+   `claude mcp add playwright -- npx @playwright/mcp@latest` en Mac, o
+   `claude mcp add playwright -- cmd /c npx @playwright/mcp@latest` en Windows (sin el
+   `cmd /c`, en Windows no arranca). Necesita Node.js: si no hay,
+   `winget install OpenJS.NodeJS.LTS` o `brew install node`. Después pide reiniciar Claude Code.
 2. **La persona inicia sesión, nunca tú.** Abre la página, y si pide entrar, para y dile que
    inicie sesión en la ventana que se abrió. No escribas ni pidas contraseñas. La sesión se
    queda guardada para la próxima vez.
@@ -113,17 +118,26 @@ Según lo que te hayan dado:
 6. Al final di cuántas páginas leíste y qué no pudiste leer.
 
 **Un link de una carpeta de Google Drive**
-1. Usa el conector de Google Drive. Si no está conectado, dile a la persona cómo conectarlo y
-   para.
+1. Usa el conector de Google Drive de Claude. No hace falta instalar nada: ni un CLI de
+   Google ni MarkItDown, porque el conector ya entrega en texto los Google Docs, Sheets y
+   Slides, los PDF y los Word, Excel y PowerPoint que estén en Drive.
+   Si no ves sus herramientas, no está conectado. Dile a la persona que lo conecte una vez en
+   claude.ai (Configuración, Conectores, Google Drive), que su Claude Code tenga la sesión
+   iniciada con esa misma cuenta de Claude (no con una API key) y que lo vuelva a abrir. Y para.
 2. Saca el ID de la carpeta del link (lo que va después de `/folders/`) y lista lo que hay
-   adentro.
+   adentro, **página por página hasta que no haya más**, y entra también a las subcarpetas.
+   Antes de leer, di cuántos archivos encontraste.
 3. Lee cada documento y guárdalo como `.md` en `raw/documentos/`, con una cabecera: título,
    link y **fecha de última modificación**. Esa fecha es la que el wiki usa para saber qué tan
-   vigente está algo.
-4. Lo que no se pueda leer (videos, imágenes), lístalo al final. No lo saltes en silencio.
+   vigente está algo. Si el texto de un archivo muy largo llega cortado, dilo en su cabecera.
+4. Lo que no es texto (videos, audios, imágenes), lístalo al final con su link. No lo saltes
+   en silencio.
 
 **Archivos que te pasen**
-Cópialos a la subcarpeta de `raw/` que les toque, sin editarlos.
+Cópialos a la subcarpeta de `raw/` que les toque, sin editarlos. Un PDF, un `.md` o un `.txt`
+los lees directo. Un Word, Excel o PowerPoint no: guarda el original y al lado su versión en
+texto (`mismo-nombre.md`), convertida con MarkItDown (`pip install "markitdown[all]"`, luego
+`markitdown archivo.docx -o archivo.md`). Si no está instalado, avisa antes de instalarlo.
 
 **Lo que la persona te dicte**
 1. Antes de integrar nada, guárdalo **tal cual** en `raw/dictados/AAAA-MM-DD-tema.md`. Un

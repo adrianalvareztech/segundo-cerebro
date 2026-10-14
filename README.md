@@ -50,7 +50,7 @@ copiando el cerebro que ya tienes más parecido y mete las primeras fuentes.
 | Meter algo nuevo | "Acabo de meter fuentes en raw, procésalas e intégralas al wiki." |
 | Preguntar | Lo que quieras. Te contesta citando de qué página y de qué fuente lo saca |
 | Guardar una buena respuesta | "Esta respuesta está buena. Guárdala en el wiki y enlázala desde las páginas que usó." |
-| Que no se pudra | "Revisa el cerebro: integra lo pendiente en raw, marca contradicciones, lista lo de más de 6 meses y las páginas sin enlaces. No borres nada, déjame el reporte." |
+| Que siga sirviendo | "Revisa el cerebro: integra lo pendiente en raw, marca contradicciones, lista lo de más de 6 meses y las páginas sin enlaces. No borres nada, déjame el reporte." |
 
 Meter un archivo a `raw/` no lo mete al wiki. Son dos pasos: lo metes y le pides que lo integre.
 
@@ -60,9 +60,10 @@ Meter un archivo a `raw/` no lo mete al wiki. Son dos pasos: lo metes y le pides
 |---|---|---|
 | Un video de YouTube | baja solo los subtítulos | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
 | Un video o audio en tu computadora | lo transcribe en tu compu, sin mandarlo a ningún lado | [Whisper](https://github.com/openai/whisper), con Python y ffmpeg (más de 1 GB la primera vez) |
-| Una carpeta de Google Drive | con el conector de Google Drive de Claude | nada |
+| Una carpeta de Google Drive | con el conector de Google Drive de Claude. Lee Google Docs, Sheets y Slides, y también PDF, Word, Excel y PowerPoint, sin convertir nada | nada. Se conecta una vez en claude.ai (Configuración, Conectores, Google Drive) y Claude Code lo usa si tienes la sesión iniciada con esa cuenta |
 | Una app sin API ni conector | Claude maneja un navegador con tu sesión. Inicias sesión tú, nunca le das tu contraseña, y solo lee | [Playwright MCP](https://github.com/microsoft/playwright-mcp), con Node.js |
-| Archivos, notas o lo que le dictes | los guarda tal cual en `raw/` | nada |
+| Archivos, notas o lo que le dictes | los guarda tal cual en `raw/`. Un PDF lo lee directo | nada |
+| Un Word, Excel o PowerPoint en tu computadora | lo convierte a texto antes de guardarlo | [MarkItDown](https://github.com/microsoft/markitdown), con Python |
 
 Nada se instala de entrada. El skill te avisa antes y lo instala cuando una fuente lo pide.
 Todo es gratis y de código abierto.
