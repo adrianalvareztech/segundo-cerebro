@@ -58,8 +58,7 @@ Meter un archivo a `raw/` no lo mete al wiki. Son dos pasos: lo metes y le pides
 
 | Fuente | Cómo | Qué instala la primera vez |
 |---|---|---|
-| Un video de YouTube | baja solo los subtítulos | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
-| Los últimos videos de un canal de YouTube | te enseña la lista y cuánto duran, y con tu sí baja los subtítulos de cada uno | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
+| Un video de YouTube, o los últimos de un canal | baja solo los subtítulos | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
 | Un video o audio en tu computadora | lo transcribe en tu compu, sin mandarlo a ningún lado | [Whisper](https://github.com/openai/whisper), con Python y ffmpeg (más de 1 GB la primera vez) |
 | Una carpeta de Google Drive | con el conector de Google Drive de Claude. Lee Google Docs, Sheets y Slides, y también PDF, Word, Excel y PowerPoint, sin convertir nada | nada. Se conecta una vez en claude.ai (Configuración, Conectores, Google Drive) y Claude Code lo usa si tienes la sesión iniciada con esa cuenta |
 | Una app sin API ni conector | Claude maneja un navegador con tu sesión. Inicias sesión tú, nunca le das tu contraseña, y solo lee | [Playwright MCP](https://github.com/microsoft/playwright-mcp), con Node.js |
