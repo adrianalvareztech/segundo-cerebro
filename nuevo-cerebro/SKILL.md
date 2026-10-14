@@ -64,7 +64,11 @@ Code; no lo reinstales.
 **Un link de YouTube**
 1. Si `yt-dlp` no está instalado, dile a la persona qué es (gratis y de código abierto,
    `github.com/yt-dlp/yt-dlp`) e instálalo: `winget install yt-dlp.yt-dlp` en Windows,
-   `brew install yt-dlp` en Mac. Si está instalado pero el comando no se encuentra, prueba
+   `brew install yt-dlp` en Mac. Ninguno de los dos necesita Python. Si en la Mac no hay
+   Homebrew, no lo instales para esto (pide la contraseña de la Mac y tarda): baja el
+   programa suelto con
+   `mkdir -p ~/.local/bin && curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos -o ~/.local/bin/yt-dlp && chmod +x ~/.local/bin/yt-dlp`
+   y úsalo con esa ruta completa. Si está instalado pero el comando no se encuentra, prueba
    `python -m yt_dlp`. Confirma con `yt-dlp --version` antes de seguir.
 2. Baja solo los subtítulos, sin el video. Con `--list-subs` ve cuáles hay y baja los
    automáticos en el idioma original del video (los que terminan en `-orig`), con
