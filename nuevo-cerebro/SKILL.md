@@ -81,6 +81,21 @@ Code; no lo reinstales.
 6. Los nombres propios mal escritos no se corrigen en `raw/`. Se normalizan al escribir el
    wiki.
 
+**Un canal de YouTube** ("los últimos 40 videos de Gary Vee")
+1. Encuentra el canal y lista sus videos más recientes sin bajar nada:
+   `yt-dlp --flat-playlist --playlist-end 40 --print "%(id)s | %(title)s | %(duration)s" "https://www.youtube.com/@canal/videos"`.
+   La pestaña `/videos` deja fuera los Shorts.
+2. Antes de bajar, enséñale la lista a la persona con la duración total y una advertencia:
+   integrar horas de video al wiki gasta mucho de su plan. Si suman más de 10 horas, propón
+   empezar con 10 o 15 videos y meter el resto después. Espera su sí.
+3. Baja los subtítulos de uno en uno, con los pasos de "Un link de YouTube", y con
+   `--sleep-subtitles 3` para que YouTube no te bloquee. Si uno no tiene subtítulos, anótalo y
+   sigue con el siguiente; no lo transcribas con Whisper sin preguntar.
+4. Guarda todo en `raw/videos/` primero. Integra al wiki después, por tandas de 5 videos,
+   actualizando `index.md` y `log.md` al final de cada tanda, para que si se corta no se
+   pierda lo hecho.
+5. Al final di cuántos entraron y cuáles no, y por qué.
+
 **Un video guardado en la computadora** (o un audio, una clase grabada, un reel)
 1. Claude no escucha audio: hace falta Whisper, el modelo de transcripción de OpenAI, gratis y
    de código abierto (`github.com/openai/whisper`). Corre en la computadora, sin cuenta ni llave.
