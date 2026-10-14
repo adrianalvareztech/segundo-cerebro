@@ -1,6 +1,6 @@
 ---
 name: nuevo-cerebro
-description: Crea un segundo cerebro nuevo con el método LLM Wiki de Karpathy a partir de lo que ya tienes. Copia la estructura del cerebro más parecido, ajusta la forma del wiki a para qué es, y mete las primeras fuentes (links de YouTube, videos que tengas guardados, una carpeta de Google Drive, una app sin API, archivos o lo que le dictes). Úsalo cuando digas "hagamos un segundo cerebro de...", "crea un cerebro nuevo" o "/nuevo-cerebro".
+description: Crea un segundo cerebro nuevo con el método LLM Wiki de Karpathy a partir de lo que ya tienes. Copia la estructura del cerebro más parecido, ajusta la forma del wiki a para qué es, y mete las primeras fuentes (links de YouTube, videos que tengas guardados, una carpeta de Google Drive, una app sin API, archivos o lo que le dictes). Úsalo cuando digas "hagamos un segundo cerebro de...", "crea un cerebro nuevo", "crea dos cerebros de...", "en el cerebro de X mete sus últimos videos" (si ese cerebro todavía no existe) o "/nuevo-cerebro".
 ---
 
 # Nuevo cerebro
@@ -21,6 +21,12 @@ skill es para los que siguen: con una frase y un link tienes uno nuevo andando.
 **Lo único que cambia es la forma del `wiki/`, y la decide para qué es el cerebro.**
 
 ## Pasos
+
+**El orden no cambia aunque te den las fuentes en el mismo mensaje.** Si la persona pide
+"crea el cerebro de X y bájale sus últimos 10 videos", primero van los pasos 1 a 5 y las
+fuentes se bajan en el 6, después del sí. Si bajas antes, el cerebro se queda con `raw/` y
+nada más, y parece que el skill se rompió. Si piden varios cerebros a la vez, hazlos
+juntos: una sola tanda de preguntas y una sola propuesta con la forma de cada uno.
 
 ### 1. Entender para qué es
 Saca de lo que ya te dijeron todo lo que puedas. Pregunta solo lo que falte, en un solo
@@ -45,7 +51,8 @@ sección de arriba.
 Con las respuestas del paso 1, propón la forma del `wiki/` en pocas líneas: cada carpeta o
 archivo con una frase de para qué sirve, y las reglas propias de este cerebro (lo que lo
 hace distinto del molde). **Espera un sí antes de crear nada.** Es la única decisión que
-toma la persona.
+toma la persona. Al pedirlo, dile qué falta para que no crea que ya terminaste: "todavía no
+existen el `CLAUDE.md`, el `index`, el `log` ni el `wiki/`; los creo en cuanto me digas que sí".
 
 ### 5. Crear
 - Las carpetas de `raw/` y `wiki/`.
@@ -56,7 +63,9 @@ toma la persona.
 - `log.md` con la primera entrada: la fecha, que se creó y de qué cerebro salió el molde.
 
 ### 6. Meter las primeras fuentes
-Según lo que te hayan dado. Una regla para todo lo que se instala: en Windows, lo que
+Solo con el paso 5 terminado. Según lo que te hayan dado.
+
+Una regla para todo lo que se instala: en Windows, lo que
 instalas con `winget` no aparece en la terminal que ya estaba abierta. Si después de
 instalar el comando no se encuentra, búscalo por su ruta completa o pide reiniciar Claude
 Code; no lo reinstales.
